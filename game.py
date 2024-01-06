@@ -18,10 +18,26 @@ class TicTacToe:
     def available_moves(self):
         # another way to write the below code is list comprehension
         return[i for i, spot in enumerate(self.board) if spot == ' ']
+    
+    def empty_squares(self):
+        return ' ' in self.board
 
-        # moves =[]
-        # for (i, spot) in enumerate(self.board):
-        #     # ['x', 'x', 'o'] -->[(0, 'x'), (1, 'x'), (2, 'o')]
-        #     if spot == ' ':
-        #         moves.append(i)
-        # return moves
+    def num_empty_squares(self):
+        return self.board.count(' ')
+
+def play(game, x_player, o_player, print_game=True):
+    if print_game: 
+        game.print_board_nums()
+
+    letter = 'x' # starting letter
+    # iterate while the game still has emplty squares
+    # (we don't have to worrty about winner because we'll
+    # just return that which breaks the loop)
+    while game.empty_squares():
+        # get the move from the appropriate player
+        if letter == 'o':
+            square = o_player.get_move(game)
+        else:
+            square = x_player.get_move(game)
+
+            
